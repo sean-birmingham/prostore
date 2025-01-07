@@ -91,9 +91,9 @@ export const config = {
 		},
 		authorized({ request, auth }: any) {
 			// Check for session cart cookie
-			if (!request.cookies.get("sessionCartId")) {
+			if (!request.cookies.get("sessionCartID")) {
 				// Generate new session cart id cookie
-				const sessionCartId = crypto.randomUUID();
+				const sessionCartID = crypto.randomUUID();
 
 				// Clone the req headers
 				const newRequestHeaders = new Headers(request.headers);
@@ -105,8 +105,8 @@ export const config = {
 					},
 				});
 
-				// Set newly generated sessionCartId in the response cookies
-				response.cookies.set("sessionCartId", sessionCartId);
+				// Set newly generated sessionCartID in the response cookies
+				response.cookies.set("sessionCartID", sessionCartID);
 
 				return response;
 			} else {
