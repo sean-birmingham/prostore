@@ -21,7 +21,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Loader } from "lucide-react";
 import { updateUserAddress } from "@/lib/actions/user.actions";
 import { shippingAddressDefaultValues } from "@/lib/constants";
-import CheckoutSteps from "@/components/shared/checkout-steps";
 
 const ShippingAddressForm = ({ address }: { address: ShippingAddress }) => {
 	const router = useRouter();
