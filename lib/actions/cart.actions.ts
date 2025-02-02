@@ -29,9 +29,9 @@ const calcPrice = (items: CartItem[]) => {
 export async function addItemToCart(data: CartItem) {
 	try {
 		// Check for cart cookie
-		const sessionCartID = (await cookies()).get("sessionCartID")?.value;
+		const sessionCartId = (await cookies()).get("sessionCartId")?.value;
 
-		if (!sessionCartID) throw new Error("Cart session not found");
+		if (!sessionCartId) throw new Error("Cart session not found");
 
 		// Get session and user ID
 		const session = await auth();
@@ -55,7 +55,7 @@ export async function addItemToCart(data: CartItem) {
 			const newCart = insertCartSchema.parse({
 				userId: userId,
 				items: [item],
-				sessionCartID: sessionCartID,
+				sessionCartId: sessionCartId,
 				...calcPrice([item]),
 			});
 
@@ -122,8 +122,8 @@ export async function addItemToCart(data: CartItem) {
 
 export async function getMyCart() {
 	// Check for cart cookie
-	const sessionCartID = (await cookies()).get("sessionCartID")?.value;
-	if (!sessionCartID) throw new Error("Cart session not found");
+	const sessionCartId = (await cookies()).get("sessionCartId")?.value;
+	if (!sessionCartId) throw new Error("Cart session not found");
 
 	// Get session and user ID
 	const session = await auth();
@@ -131,7 +131,7 @@ export async function getMyCart() {
 
 	// Get user cart from database
 	const cart = await prisma.cart.findFirst({
-		where: userId ? { userId: userId } : { sessionCartID: sessionCartID },
+		where: userId ? { userId: userId } : { sessionCartId: sessionCartId },
 	});
 
 	if (!cart) return undefined;
@@ -149,8 +149,8 @@ export async function getMyCart() {
 
 export async function removeItemFromCart(productId: string) {
 	try {
-		const sessionCartID = (await cookies()).get("sessionCartID")?.value;
-		if (!sessionCartID) throw new Error("Cart session not found");
+		const sessionCartId = (await cookies()).get("sessionCartId")?.value;
+		if (!sessionCartId) throw new Error("Cart session not found");
 
 		// Get Product
 		const product = await prisma.product.findFirst({

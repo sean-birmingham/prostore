@@ -88,11 +88,11 @@ export const config = {
 
 				if (trigger === "signIn" || trigger === "signUp") {
 					const cookiesObject = await cookies();
-					const sessionCartID = cookiesObject.get("sessionCartID")?.value;
+					const sessionCartId = cookiesObject.get("sessionCartId")?.value;
 
-					if (sessionCartID) {
+					if (sessionCartId) {
 						const sessionCart = await prisma.cart.findFirst({
-							where: { sessionCartID },
+							where: { sessionCartId },
 						});
 
 						if (sessionCart) {
@@ -137,9 +137,9 @@ export const config = {
 			if (!auth && protectedPaths.some((p) => p.test(pathname))) return false;
 
 			// Check for session cart cookie
-			if (!request.cookies.get("sessionCartID")) {
+			if (!request.cookies.get("sessionCartId")) {
 				// Generate new session cart id cookie
-				const sessionCartID = crypto.randomUUID();
+				const sessionCartId = crypto.randomUUID();
 
 				// Clone the req headers
 				const newRequestHeaders = new Headers(request.headers);
@@ -151,8 +151,8 @@ export const config = {
 					},
 				});
 
-				// Set newly generated sessionCartID in the response cookies
-				response.cookies.set("sessionCartID", sessionCartID);
+				// Set newly generated sessionCartId in the response cookies
+				response.cookies.set("sessionCartId", sessionCartId);
 
 				return response;
 			} else {

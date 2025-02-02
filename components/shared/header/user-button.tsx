@@ -24,7 +24,7 @@ const UserButton = async () => {
 		);
 	}
 
-	const firstInitial = session.user?.name?.charAt(0).toUpperCase() ?? "";
+	const firstInitial = session.user?.name?.charAt(0).toUpperCase() ?? "U";
 
 	return (
 		<div className="flex gap-2 items-center">
@@ -33,7 +33,7 @@ const UserButton = async () => {
 					<div className="flex items-center">
 						<Button
 							variant="ghost"
-							className="relative w-8 h-8 rounded-full ml-2 flex items-center justify-center bg-gray-200">
+							className="relativee w-8 h-8 rounded-full ml-2 flex items-center justify-center bg-gray-200">
 							{firstInitial}
 						</Button>
 					</div>
@@ -52,6 +52,7 @@ const UserButton = async () => {
 							</div>
 						</div>
 					</DropdownMenuLabel>
+
 					<DropdownMenuItem>
 						<Link
 							href="/user/profile"
@@ -66,6 +67,7 @@ const UserButton = async () => {
 							Order History
 						</Link>
 					</DropdownMenuItem>
+
 					<DropdownMenuItem className="p-0 mb-1">
 						<form
 							action={signOutUser}

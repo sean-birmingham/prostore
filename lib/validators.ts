@@ -59,7 +59,7 @@ export const insertCartSchema = z.object({
 	totalPrice: currency,
 	shippingPrice: currency,
 	taxPrice: currency,
-	sessionCartID: z.string().min(1, "Session cart id is required"),
+	sessionCartId: z.string().min(1, "Session cart id is required"),
 	userId: z.string().optional().nullable(),
 });
 
@@ -107,9 +107,16 @@ export const insertOrderItemSchema = z.object({
 	qty: z.number(),
 });
 
+// Schema for PayPal payment result
 export const paymentResultSchema = z.object({
 	id: z.string(),
 	status: z.string(),
 	email_address: z.string(),
 	pricePaid: z.string(),
+});
+
+// Schema for updating the user profile
+export const updateProfileSchema = z.object({
+	name: z.string().min(3, "Name must be at leaast 3 characters"),
+	email: z.string().min(3, "Email must be at leaast 3 characters"),
 });
