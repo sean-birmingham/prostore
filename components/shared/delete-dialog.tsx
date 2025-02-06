@@ -49,15 +49,14 @@ const DeleteDialog = ({
 			<AlertDialogTrigger asChild>
 				<Button
 					size="sm"
-					variant="destructive">
+					variant="destructive"
+					className="ml-2">
 					Delete
 				</Button>
 			</AlertDialogTrigger>
 			<AlertDialogContent>
 				<AlertDialogHeader>
-					<AlertDialogTitle>
-						Are you sure you want to delete this order?
-					</AlertDialogTitle>
+					<AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
 					<AlertDialogDescription>
 						This action cannot be undone
 					</AlertDialogDescription>
